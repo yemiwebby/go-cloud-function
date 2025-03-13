@@ -91,7 +91,8 @@ jobs:
               --entry-point HelloWorld \
               --source . \
               --no-gen2 \
-              --verbosity debug
+              --verbosity debug \
+              --set-build-env-vars GOFLAGS="-buildvcs=false"
 
 workflows:
   version: 2
