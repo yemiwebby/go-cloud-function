@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/yemiwebby/go-cloud-function/app/handler"
+	"github.com/yemiwebby/go-cloud-function/handler"
 )
 
 func TestHelloWorld(t *testing.T) {

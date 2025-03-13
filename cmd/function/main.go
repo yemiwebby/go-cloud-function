@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
-	"github.com/yemiwebby/go-cloud-function/app/handler"
+	"github.com/yemiwebby/go-cloud-function/handler"
 )
 
 func main() {

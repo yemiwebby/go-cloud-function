@@ -1,4 +1,4 @@
-module github.com/yemiwebby/go-cloud-function/app
+module github.com/yemiwebby/go-cloud-function
 
 go 1.23.4
 
