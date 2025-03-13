@@ -6,6 +6,8 @@ README.md
 
 .git/
 
+/.git/
+
 # Exclude test files
 
 _\_test.go
