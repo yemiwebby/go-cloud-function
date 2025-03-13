@@ -20,21 +20,18 @@ jobs:
       - run:
           name: Install gcloud CLI
           command: |
-            # Disable prompts in gcloud installer
-            export CLOUDSDK_CORE_DISABLE_PROMPTS=1
+            # Pipe 'yes ""' to skip interactive "Modify profile?" prompts
+            yes "" | curl https://sdk.cloud.google.com | bash
 
-            # Install the Google Cloud SDK
-            curl https://sdk.cloud.google.com | bash
-
-            # For this current step, source so 'gcloud' is immediately available
+            # Source for current shell
             source /home/circleci/google-cloud-sdk/path.bash.inc
             source /home/circleci/google-cloud-sdk/completion.bash.inc
 
-            # Ensure future steps also have 'gcloud' on PATH by writing to $BASH_ENV
+            # Ensure future steps also have 'gcloud' in PATH
             echo "source /home/circleci/google-cloud-sdk/path.bash.inc" >> $BASH_ENV
             echo "source /home/circleci/google-cloud-sdk/completion.bash.inc" >> $BASH_ENV
 
-            # Optional: verify installation in this same step
+            # Verify installation
             gcloud version
 
       - run:
@@ -45,8 +42,22 @@ jobs:
             gcloud config set project "$GCP_PROJECT_ID"
 
       - run:
+          name: Enable Required APIs
+          command: |
+            # Pre-enable APIs so we don't get prompts during deploy.
+            # Adjust this list if you switch to Gen 2 or need additional services.
+            gcloud services enable \
+              cloudfunctions.googleapis.com \
+              cloudresourcemanager.googleapis.com \
+              run.googleapis.com \
+              artifactregistry.googleapis.com \
+              cloudbuild.googleapis.com \
+              --project "$GCP_PROJECT_ID"
+
+      - run:
           name: Deploy Cloud Function
           command: |
+            # Deploy a 1st Gen function (since we specify --no-gen2).
             gcloud functions deploy goCloudFunc \
               --region=us-central1 \
               --runtime go121 \
