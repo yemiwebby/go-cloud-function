@@ -1,20 +1,12 @@
-# Optionally ignore documentation and local config files
-
-README.md
-
 # Exclude version control data
 
 .git/
-
-/.git/
 
 # Exclude test files
 
 _\_test.go
 _.test.go
 
-# Exclude extraneous directories that aren’t part of the function code
+# Exclude extraneous directories (if not needed)
 
 go-cloud-function/
-
-/go-cloud-function/
