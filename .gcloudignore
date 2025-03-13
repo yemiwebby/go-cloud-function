@@ -1,10 +1,16 @@
-# Ignore version control metadata
-.git/
-.gitignore
-
-# Ignore test files
-*_test.go
-*.test.go
-
 # Optionally ignore documentation and local config files
+
 README.md
+
+# Exclude version control data
+
+.git/
+
+# Exclude test files
+
+_\_test.go
+_.test.go
+
+# Exclude extraneous directories that aren’t part of the function code
+
+go-cloud-function/
