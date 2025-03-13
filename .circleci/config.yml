@@ -20,11 +20,18 @@ jobs:
       - run:
           name: Install gcloud CLI
           command: |
+            # Disable prompts in gcloud installer
+            export CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
             # Install the Google Cloud SDK
             curl https://sdk.cloud.google.com | bash
-            echo "source /home/circleci/google-cloud-sdk/completion.bash.inc" >> ~/.bashrc
+            # Optionally source the paths for the current session (if needed)
             echo "source /home/circleci/google-cloud-sdk/path.bash.inc" >> ~/.bashrc
+            echo "source /home/circleci/google-cloud-sdk/completion.bash.inc" >> ~/.bashrc
             source ~/.bashrc
+
+            # Verify installation
+            gcloud version
       - run:
           name: Authenticate GCP Service Account
           command: |
