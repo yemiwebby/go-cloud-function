@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/yemiwebby/go-cloud-function/handler"
 )
 
 func TestHelloWorld(t *testing.T) {
@@ -13,7 +15,7 @@ func TestHelloWorld(t *testing.T) {
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(HelloWorld)
+	handler := http.HandlerFunc(handler.HelloWorld)
 
 	handler.ServeHTTP(rr, req)
 

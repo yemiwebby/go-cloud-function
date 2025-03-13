@@ -1,20 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net/http"
 	"os"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
+	"github.com/yemiwebby/go-cloud-function/handler"
 )
 
-func HelloWorld(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Hello, World from Go Cloud Function!")
-}
-
 func main() {
-	funcframework.RegisterHTTPFunction("/", HelloWorld)
+	funcframework.RegisterHTTPFunction("/", handler.HelloWorld)
 
 	// Get the port from environment variable or set a default.
 	port := "8080"
