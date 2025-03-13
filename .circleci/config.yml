@@ -75,6 +75,11 @@ jobs:
           command: |
             ls -R
       - run:
+          name: List Deployment Files
+          command: |
+            echo "Listing files to be deployed:"
+            find . -type f
+      - run:
           name: Deploy Cloud Function
           command: |
             # Deploy a 1st Gen function (since we specify --no-gen2).
