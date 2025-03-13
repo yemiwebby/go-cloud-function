@@ -49,7 +49,7 @@ jobs:
           command: |
             gcloud functions deploy goCloudFunc \
               --region=us-central1 \
-              --runtime go123 \
+              --runtime go121 \
               --trigger-http \
               --allow-unauthenticated \
               --entry-point HelloWorld \
