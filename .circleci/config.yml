@@ -25,19 +25,25 @@ jobs:
 
             # Install the Google Cloud SDK
             curl https://sdk.cloud.google.com | bash
-            # Optionally source the paths for the current session (if needed)
-            echo "source /home/circleci/google-cloud-sdk/path.bash.inc" >> ~/.bashrc
-            echo "source /home/circleci/google-cloud-sdk/completion.bash.inc" >> ~/.bashrc
-            source ~/.bashrc
 
-            # Verify installation
+            # For this current step, source so 'gcloud' is immediately available
+            source /home/circleci/google-cloud-sdk/path.bash.inc
+            source /home/circleci/google-cloud-sdk/completion.bash.inc
+
+            # Ensure future steps also have 'gcloud' on PATH by writing to $BASH_ENV
+            echo "source /home/circleci/google-cloud-sdk/path.bash.inc" >> $BASH_ENV
+            echo "source /home/circleci/google-cloud-sdk/completion.bash.inc" >> $BASH_ENV
+
+            # Optional: verify installation in this same step
             gcloud version
+
       - run:
           name: Authenticate GCP Service Account
           command: |
-            echo $GOOGLE_SERVICE_ACCOUNT_KEY > /tmp/account.json
+            echo "$GOOGLE_SERVICE_ACCOUNT_KEY" > /tmp/account.json
             gcloud auth activate-service-account --key-file=/tmp/account.json
-            gcloud config set project $GCP_PROJECT_ID
+            gcloud config set project "$GCP_PROJECT_ID"
+
       - run:
           name: Deploy Cloud Function
           command: |
@@ -48,6 +54,7 @@ jobs:
               --allow-unauthenticated \
               --entry-point HelloWorld \
               --source .
+
 workflows:
   version: 2
   build-test-deploy:
