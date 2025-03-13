@@ -20,8 +20,11 @@ jobs:
       - run:
           name: Install gcloud CLI
           command: |
-            # Pipe 'yes ""' to skip interactive "Modify profile?" prompts
-            yes "" | curl https://sdk.cloud.google.com | bash
+            # Disable prompts in gcloud installer
+            export CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+            # Install the Google Cloud SDK
+            curl https://sdk.cloud.google.com | bash
 
             # Source for current shell
             source /home/circleci/google-cloud-sdk/path.bash.inc
