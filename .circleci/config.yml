@@ -70,7 +70,10 @@ jobs:
               artifactregistry.googleapis.com \
               cloudbuild.googleapis.com \
               --project "$GCP_PROJECT_ID"
-
+      - run:
+          name: Debug Directory Structure
+          command: |
+            ls -R
       - run:
           name: Deploy Cloud Function
           command: |
@@ -82,7 +85,8 @@ jobs:
               --allow-unauthenticated \
               --entry-point HelloWorld \
               --source . \
-              --no-gen2
+              --no-gen2 \
+              --verbosity debug
 
 workflows:
   version: 2
