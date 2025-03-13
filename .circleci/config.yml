@@ -45,7 +45,7 @@ jobs:
             gcloud config set project "$GCP_PROJECT_ID"
 
       - run:
-          name: Enable Required APIs
+          name: Enable Required APIs.
           command: |
             # Pre-enable APIs so we don't get prompts during deploy.
             # Adjust this list if you switch to Gen 2 or need additional services.
