@@ -91,7 +91,7 @@ jobs:
               --entry-point HelloWorld \
               --source . \
               --no-gen2 \
-              -buildvcs=false \
+              --buildvcs=false \
               --verbosity debug
 
 workflows:
