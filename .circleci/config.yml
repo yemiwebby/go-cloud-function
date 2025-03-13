@@ -49,11 +49,12 @@ jobs:
           command: |
             gcloud functions deploy goCloudFunc \
               --region=us-central1 \
-              --runtime go120 \
+              --runtime go123 \
               --trigger-http \
               --allow-unauthenticated \
               --entry-point HelloWorld \
-              --source .
+              --source . \
+              --no-gen2
 
 workflows:
   version: 2
