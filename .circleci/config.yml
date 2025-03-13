@@ -37,12 +37,26 @@ jobs:
             # Verify installation
             gcloud version
 
+      # - run:
+      #     name: Authenticate GCP Service Account
+      #     command: |
+      #       echo "$GOOGLE_SERVICE_ACCOUNT_KEY" > /tmp/account.json
+      #       gcloud auth activate-service-account --key-file=/tmp/account.json
+      #       gcloud config set project "$GCP_PROJECT_ID"
       - run:
           name: Authenticate GCP Service Account
           command: |
             echo "$GOOGLE_SERVICE_ACCOUNT_KEY" > /tmp/account.json
             gcloud auth activate-service-account --key-file=/tmp/account.json
             gcloud config set project "$GCP_PROJECT_ID"
+
+      - run:
+          name: Debug Authentication
+          command: |
+            echo "==== gcloud auth list ===="
+            gcloud auth list
+            echo "==== gcloud config list ===="
+            gcloud config list
 
       - run:
           name: Enable Required APIs.
