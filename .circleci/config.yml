@@ -79,9 +79,14 @@ jobs:
             echo "Listing files to be deployed:"
             find . -type f
       - run:
+          name: List Available Runtimes
+          command: |
+            echo "Available runtimes for 2nd gen:"
+            gcloud functions runtimes list --gen2
+      - run:
           name: Deploy Cloud Function
           command: |
-            gcloud functions deploy goCloudFunc \
+            gcloud functions deploy goCloudFunc --gen2 \
               --region=us-central1 \
               --runtime go123 \
               --trigger-http \
@@ -90,7 +95,6 @@ jobs:
               --source . \
               --verbosity debug \
               --set-build-env-vars GOFLAGS="-buildvcs=false"
-              --gen2
 
 workflows:
   version: 2
