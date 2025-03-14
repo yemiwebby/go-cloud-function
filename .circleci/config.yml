@@ -61,8 +61,7 @@ jobs:
       - run:
           name: Enable Required APIs.
           command: |
-            # Pre-enable APIs so we don't get prompts during deploy.
-            # Adjust this list if you switch to Gen 2 or need additional services.
+            # Pre-enable APIs needed for Gen2 functions.
             gcloud services enable \
               cloudfunctions.googleapis.com \
               cloudresourcemanager.googleapis.com \
@@ -82,7 +81,6 @@ jobs:
       - run:
           name: Deploy Cloud Function
           command: |
-            # Deploy a 1st Gen function (since we specify --no-gen2).
             gcloud functions deploy goCloudFunc \
               --region=us-central1 \
               --runtime go123 \
@@ -92,6 +90,7 @@ jobs:
               --source . \
               --verbosity debug \
               --set-build-env-vars GOFLAGS="-buildvcs=false"
+              --gen2
 
 workflows:
   version: 2
