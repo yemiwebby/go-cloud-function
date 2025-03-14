@@ -79,11 +79,6 @@ jobs:
             echo "Listing files to be deployed:"
             find . -type f
       - run:
-          name: List Available Runtimes
-          command: |
-            echo "Available runtimes for 2nd gen:"
-            gcloud functions runtimes list --gen2
-      - run:
           name: Deploy Cloud Function
           command: |
             gcloud functions deploy goCloudFunc --gen2 \
