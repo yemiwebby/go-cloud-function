@@ -85,11 +85,11 @@ jobs:
             # Deploy a 1st Gen function (since we specify --no-gen2).
             gcloud functions deploy goCloudFunc \
               --region=us-central1 \
-              --runtime go121 \
+              --runtime go123 \
               --trigger-http \
               --allow-unauthenticated \
               --entry-point HelloWorld \
-              --source ./cmd/function \
+              --source . \
               --verbosity debug \
               --set-build-env-vars GOFLAGS="-buildvcs=false"
 
