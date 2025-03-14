@@ -10,7 +10,3 @@ _.test.go
 # Exclude extraneous directories (if not needed)
 
 go-cloud-function/
-
-
-go.mod
-go.sum

@@ -90,7 +90,6 @@ jobs:
               --allow-unauthenticated \
               --entry-point HelloWorld \
               --source ./cmd/function \
-              --no-gen2 \
               --verbosity debug \
               --set-build-env-vars GOFLAGS="-buildvcs=false"
 
