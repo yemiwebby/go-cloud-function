@@ -87,7 +87,7 @@ jobs:
           name: Deploy Cloud Function
           command: |
             gcloud functions deploy goCloudFunc --gen2 \
-              --region=us-central1 \
+              --region=us-west1 \
               --runtime go123 \
               --trigger-http \
               --allow-unauthenticated \
