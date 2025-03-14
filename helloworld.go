@@ -11,7 +11,7 @@ import (
 )
 
 func init() {
-	functions.HTTP("HelloHTTP", HelloHTTP)
+	functions.HTTP("HelloWorld", HelloHTTP)
 }
 
 // HelloHTTP is an HTTP Cloud Function with a request parameter.
