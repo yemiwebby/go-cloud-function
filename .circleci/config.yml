@@ -37,12 +37,6 @@ jobs:
             # Verify installation
             gcloud version
 
-      # - run:
-      #     name: Authenticate GCP Service Account
-      #     command: |
-      #       echo "$GOOGLE_SERVICE_ACCOUNT_KEY" > /tmp/account.json
-      #       gcloud auth activate-service-account --key-file=/tmp/account.json
-      #       gcloud config set project "$GCP_PROJECT_ID"
       - run:
           name: Authenticate GCP Service Account
           command: |
@@ -91,7 +85,7 @@ jobs:
               --entry-point HelloWorld \
               --source . \
               --verbosity debug \
-              --set-build-env-vars GOFLAGS="-buildvcs=false"
+              --set-build-env-vars GOFLAGS="-buildvcs=false" \
               --no-gen2
 
 workflows:
